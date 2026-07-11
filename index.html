@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SOS Church of Christ — A cappella worship · all are welcome</title>
+  <meta name="description" content="SOS Church of Christ — a cappella worship, plain preaching from Scripture, a family in Christ. Sundays 9:00 & 10:30 am, Wednesdays 7:00 pm. Come as you are.">
+  <!-- matches the dark photo hero so the mobile browser chrome blends in -->
+  <meta name="theme-color" content="#1E1611">
+
+  <!-- Favicon: a small brass chapel arch, inline so there is nothing extra to host -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F7F4ED'/%3E%3Cpath d='M9 26 V14 Q9 6 16 6 Q23 6 23 14 V26' fill='none' stroke='%23B0894F' stroke-width='2'/%3E%3C/svg%3E">
+
+  <!--
+    FONTS — PROTOTYPING ONLY.
+    For production, self-host Fraunces, Hanken Grotesk and Dancing Script
+    (download from fonts.google.com → @font-face in styles.css) for speed
+    and independence from third-party hosts.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Hanken+Grotesk:wght@400;500&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!--
+  ============================================================
+  SOS CHURCH OF CHRIST — single-page site
+  ============================================================
+  EVERY name, date, time, address, sermon, event, link and
+  image below is a PLACEHOLDER. Each one is marked with an
+  "EDIT:" or "REPLACE:" comment. Search this file for "EDIT:"
+  to find everything that needs real content before launch.
+  ============================================================
+-->
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ══════════════ ANTIGRAVITY SKY ══════════════
+     A fixed, page-wide field of weightless motion behind everything:
+     three vast, soft plates of warm light that drift on minute-long
+     orbits, and a scatter of tiny brass dust motes rising as if
+     gravity were off. Pure decoration (aria-hidden), pure CSS, and
+     it disappears entirely under prefers-reduced-motion. -->
+<div class="sky" aria-hidden="true">
+  <span class="sky-orb k1"></span>
+  <span class="sky-orb k2"></span>
+  <span class="sky-orb k3"></span>
+  <span class="mote" style="--x:7%;  --d:52s; --e:-40s; --o:.26; --s:3px; --w:34px"></span>
+  <span class="mote" style="--x:16%; --d:67s; --e:-9s;  --o:.16; --s:2px; --w:-28px"></span>
+  <span class="mote" style="--x:26%; --d:44s; --e:-30s; --o:.30; --s:3px; --w:22px"></span>
+  <span class="mote" style="--x:37%; --d:74s; --e:-58s; --o:.14; --s:2px; --w:44px"></span>
+  <span class="mote" style="--x:47%; --d:49s; --e:-17s; --o:.22; --s:4px; --w:-36px"></span>
+  <span class="mote" style="--x:56%; --d:61s; --e:-47s; --o:.18; --s:2px; --w:30px"></span>
+  <span class="mote" style="--x:64%; --d:41s; --e:-4s;  --o:.28; --s:3px; --w:-20px"></span>
+  <span class="mote" style="--x:73%; --d:70s; --e:-33s; --o:.15; --s:2px; --w:38px"></span>
+  <span class="mote" style="--x:81%; --d:47s; --e:-22s; --o:.24; --s:3px; --w:-32px"></span>
+  <span class="mote" style="--x:88%; --d:64s; --e:-52s; --o:.17; --s:2px; --w:26px"></span>
+  <span class="mote" style="--x:94%; --d:55s; --e:-13s; --o:.21; --s:3px; --w:-24px"></span>
+  <span class="mote" style="--x:32%; --d:58s; --e:-26s; --o:.12; --s:4px; --w:18px"></span>
+</div>
+
+<!-- ══════════════ NAV (sticky; transparent over hero, paper after) ══════════════ -->
+<header class="nav" id="top">
+  <div class="nav-inner">
+    <a class="wordmark" href="#top">
+      <svg class="wordmark-arch" viewBox="0 0 20 24" aria-hidden="true" focusable="false">
+        <path d="M3 23 V10 Q3 2 10 2 Q17 2 17 10 V23" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+      SOS Church of Christ
+    </a>
+    <button class="menu-btn sc" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" aria-label="Main">
+      <ul class="nav-links">
+        <li><a class="sc" href="#visit">Visit</a></li>
+        <li><a class="sc" href="#sermons">Sermons</a></li>
+        <li><a class="sc" href="#events">Events</a></li>
+        <li><a class="sc" href="#give">Give</a></li>
+        <li><a class="sc" href="#resources">Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ══════════════ 1 · HERO — full-bleed congregation photo ══════════════
+       The photo IS the hero: it fills the viewport edge to edge and sits
+       behind the transparent nav. Warm ink gradients (never flat black)
+       darken the top so the nav reads, and the bottom-left where the
+       content sits — the image dissolves, it is never "framed".
+       REPLACE images/congregation.jpg with a newer group photo any time;
+       a wide, landscape shot (people mid-frame, sky above) works best. -->
+  <section class="hero" aria-label="Welcome">
+    <div class="hero-bg">
+      <img src="images/congregation.jpg"
+           alt="The SOS Church of Christ family — men, women and children gathered together outside after Sunday worship"
+           width="1080" height="584" fetchpriority="high" decoding="async">
+      <div class="hero-scrim" aria-hidden="true"></div>
+    </div>
+
+    <div class="container hero-content">
+      <p class="hero-chip sc hero-a">Theme of the year · 2 Corinthians 9:7</p>
+      <div class="hero-title-block hero-b">
+        <h1 class="hero-c">SOS Church of Christ</h1>
+        <p class="tagline hero-d">A cappella worship · a family in Christ · all are welcome</p>
+      </div>
+      <p class="hero-times sc hero-e">
+        <span>Sun 9:00 &amp; 10:30</span>
+        <span class="sep" aria-hidden="true"></span>
+        <span>Wed 7:00 pm</span>
+      </p>
+      <div class="hero-actions hero-f">
+        <a class="btn" href="#visit">Plan your visit</a>
+        <!-- EDIT: real street address -->
+        <p class="hero-address">Tiyende Pamodzi Primary School, SOS, Lusaka</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signature 2 — arched hairline divider (dark: it sits inside the
+       continuous dark passage that runs from the hero to the welcome photo) -->
+  <div class="arch-divider arch-divider-dark" aria-hidden="true" data-reveal>
+    <svg viewBox="0 0 1000 48" preserveAspectRatio="none" focusable="false">
+      <path pathLength="1" d="M0 44 Q500 6 1000 44"/>
+    </svg>
+  </div>
+
+  <!-- ══════════════ 2 · THIS SUNDAY — SERVICE ROSTER ══════════════
+       This section stays dark so the hero photo above and the welcome
+       photo below blend through it — one unbroken backdrop; the roster
+       itself floats on it as a light card. -->
+  <section class="section section-dark" id="roster" aria-labelledby="roster-h">
+    <div class="container" data-reveal data-stagger>
+      <p class="eyebrow">Serving together</p>
+      <h2 id="roster-h">This Sunday&rsquo;s service.</h2>
+      <p class="section-sub">Who&rsquo;s serving over the next four weeks.</p>
+
+      <!--
+        ═══ THE ROSTER IS FILLED FROM A GOOGLE SHEET ═══
+        Names are NOT typed into this file. An admin keeps them in a Google
+        Sheet and the page pulls them in automatically, so a non-technical
+        volunteer never touches code.
+
+        ONE-TIME SETUP (about two minutes):
+        1. Make a Google Sheet laid out exactly like the table — the first
+           row is a blank cell then the Sunday dates; each row after is a
+           role then the names:
+
+               (leave blank) | Jul 12 | Jul 19 | Jul 26 | Aug 2
+               Bible study   | Name   | Name   | Name   | ...
+               Song leading  | ...
+               Preaching     | ...
+               Lord's Supper | ...
+               Offering      | ...
+
+        2. In the sheet: File → Share → Publish to web → pick that tab →
+           choose "Comma-separated values (.csv)" → Publish. Copy the link.
+        3. Open script.js, paste that link into ROSTER_SHEET_CSV near the
+           top, and save.
+
+        AFTERWARDS: the admin just edits the sheet — the leftmost date column
+        is always shown as "This Sunday", and the site updates when visitors
+        refresh. No code is ever edited again.
+
+        The table below is only a fallback shown before the sheet is connected
+        (or if it can't be reached); it deliberately holds NO names.
+      -->
+      <div class="table-wrap">
+        <table class="roster" id="roster-table" data-roster>
+          <caption class="visually-hidden">Service roster for the next four Sundays. Names are maintained by the church office.</caption>
+          <thead>
+            <tr>
+              <th scope="col"><span class="visually-hidden">Role</span></th>
+              <th scope="col" class="sc today">This Sunday</th>
+              <th scope="col" class="sc">Next Sunday</th>
+              <th scope="col" class="sc">Then</th>
+              <th scope="col" class="sc">After</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" class="sc">Bible study</th>
+              <td class="tba">—</td><td class="tba">—</td><td class="tba">—</td><td class="tba">—</td>
+            </tr>
+            <tr>
+              <th scope="row" class="sc">Song leading</th>
+              <td class="tba">—</td><td class="tba">—</td><td class="tba">—</td><td class="tba">—</td>
+            </tr>
+            <tr>
+              <th scope="row" class="sc">Preaching</th>
+              <td class="tba">—</td><td class="tba">—</td><td class="tba">—</td><td class="tba">—</td>
+            </tr>
+            <tr>
+              <th scope="row" class="sc">Lord&rsquo;s Supper</th>
+              <td class="tba">—</td><td class="tba">—</td><td class="tba">—</td><td class="tba">—</td>
+            </tr>
+            <tr>
+              <th scope="row" class="sc">Offering</th>
+              <td class="tba">—</td><td class="tba">—</td><td class="tba">—</td><td class="tba">—</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="roster-note sc" data-roster-status hidden>Roster kept by the church office</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ 3 · WELCOME / WHAT TO EXPECT ══════════════
+       (The welcome-class photo that used to back this section was
+       removed; the photo file is still in images/welcome-class.jpg
+       if it's ever wanted again.) -->
+  <section class="section band-alt" id="visit" aria-labelledby="visit-h">
+    <div class="container welcome" data-reveal data-stagger>
+      <p class="eyebrow">First time?</p>
+      <h2 id="visit-h">Welcome, friend.</h2>
+
+      <div class="welcome-copy">
+        <p>
+          We&rsquo;re glad you&rsquo;re thinking of visiting. Our services are simple:
+          we sing together, pray, share the Lord&rsquo;s Supper,
+          and share the Gospel.
+        </p>
+        <p class="welcome-times sc">
+          <span>Sun 9:00 &amp; 10:30</span>
+          <span class="sep" aria-hidden="true"></span>
+          <span>Wed 7:00 pm</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ 4 · SERMONS ══════════════ -->
+  <section class="section" id="sermons" aria-labelledby="sermons-h">
+    <div class="container" data-reveal data-stagger>
+      <p class="eyebrow">Preaching</p>
+      <h2 id="sermons-h">Sermons.</h2>
+      <p class="section-sub">Plain preaching from Scripture, recorded each week.</p>
+
+      <div class="sermons-grid">
+        <!--
+          REPLACE: featured sermon video. Delete the placeholder <a> below
+          and paste a YouTube embed in its place, e.g.
+          <div class="video-frame">
+            <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
+                    title="Sermon: The generous heart" loading="lazy"
+                    allowfullscreen></iframe>
+          </div>
+        -->
+        <figure class="featured-sermon">
+          <a class="video-frame video-ph" href="https://youtube.com" aria-label="Watch the latest sermon (placeholder link)">
+            <span class="play" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+            </span>
+            <span class="sc video-label">[ latest sermon video ]</span>
+          </a>
+          <figcaption>
+            <span class="sermon-title"></span>
+            <span class="sermon-meta sc"></span>
+          </figcaption>
+        </figure>
+
+        <div class="sermon-side">
+          <h3 class="list-heading sc"></h3>
+          <ul class="sermon-list" data-reveal data-stagger><!-- EDIT: recent sermons -->
+            <li>
+              <a class="row" href="#sermons">
+                <span class="row-main">
+                  <span class="row-title"></span>
+                  <span class="row-meta sc">6</span>
+                </span>
+                <svg class="chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </li>
+            <li>
+              <a class="row" href="#sermons">
+                <span class="row-main">
+                  <span class="row-title"></span>
+                  <span class="row-meta sc"></span>
+                </span>
+                <svg class="chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </li>
+            <li>
+              <a class="row" href="#sermons">
+                <span class="row-main">
+                  <span class="row-title"></span>
+                  <span class="row-meta sc"></span>
+                </span>
+                <svg class="chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </li>
+          </ul>
+
+          <!--
+            EDIT: sermon question form. Create a free endpoint at formspree.io,
+            point it at the church office email, and put the form URL below.
+            Submissions arrive as plain emails — nothing is posted publicly.
+          -->
+          <form class="ask-form" action="https://formspree.io/f/YOUR-FORM-ID" method="POST">
+            <label class="sc ask-label" for="ask">Ask a question about this sermon</label>
+            <div class="ask-controls">
+              <input id="ask" name="question" type="text" required
+                     placeholder="Type your question…" autocomplete="off">
+              <button class="btn btn-small" type="submit">Send</button>
+            </div>
+          </form>
+          <!--
+            FUTURE — AI SERMON ASSISTANT: this form is where an AI assistant
+            could slot in later, answering questions from sermon notes and
+            transcripts the church provides. Keep the same input; route it to
+            an answering endpoint instead of (or before) the email.
+          -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signature 2 — arched hairline divider -->
+  <div class="arch-divider" aria-hidden="true" data-reveal>
+    <svg viewBox="0 0 1000 48" preserveAspectRatio="none" focusable="false">
+      <path pathLength="1" d="M0 44 Q500 6 1000 44"/>
+    </svg>
+  </div>
+
+  <!-- ══════════════ 5 · EVENTS ══════════════ -->
+  <section class="section" id="events" aria-labelledby="events-h">
+    <div class="container" data-reveal data-stagger>
+      <p class="eyebrow">On the calendar</p>
+      <h2 id="events-h">Upcoming events.</h2>
+      <!--
+        ═══ EVENTS COME FROM THE GOOGLE FORM ═══
+        Nobody edits these cards. An admin submits "Event" entries on the
+        "SOS Church — site update" Google Form (created once by running
+        admin-form-setup.gs — instructions inside that file), and the site
+        shows the three soonest that haven't passed. The cards below are
+        only a design fallback until CONTENT_SHEET_CSV is set in script.js.
+      -->
+      <ul class="event-grid" data-reveal data-stagger>
+        <li class="card event-card">
+          <span class="date-chip sc">Jul 12</span>
+          <h3></h3>
+          <p></p>
+        </li>
+        <li class="card event-card">
+          <span class="date-chip sc">Jul 19</span>
+          <h3></h3>
+          <p></p>
+        </li>
+        <li class="card event-card">
+          <span class="date-chip sc">Aug 2</span>
+          <h3></h3>
+          <p></p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════════ 6 · SMALL GROUPS ══════════════ -->
+  <section class="section band-alt" id="groups" aria-labelledby="groups-h">
+    <div class="container" data-reveal data-stagger>
+      <p class="eyebrow">Life together</p>
+      <h2 id="groups-h">Small groups.</h2>
+      <p class="section-sub">Smaller circles for study, prayer, and friendship through the week.</p>
+
+      <ul class="group-list" data-reveal data-stagger><!-- EDIT: groups, days, places -->
+        <li>
+          <span class="group-name">youths</span>
+          <span class="group-meta sc">Sundays · homes</span>
+        </li>
+        <li>
+          <span class="group-name">Men&rsquo;s study</span>
+          <span class="group-meta sc">Tuesdays · 6:30 am</span>
+        </li>
+        <li>
+          <span class="group-name">College &amp; career</span>
+          <span class="group-meta sc">Thursdays · campus</span>
+        </li>
+      </ul>
+
+      <details class="join-details">
+        <summary class="btn btn-outline">Join a group</summary>
+        <!-- EDIT: same Formspree endpoint idea as the sermon form -->
+        <form class="join-form" action="https://formspree.io/f/YOUR-FORM-ID" method="POST">
+          <div class="field">
+            <label class="sc" for="join-name">Name</label>
+            <input id="join-name" name="name" type="text" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label class="sc" for="join-email">Email</label>
+            <input id="join-email" name="email" type="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label class="sc" for="join-group">Group</label>
+            <select id="join-group" name="group">
+              <option>youths</option>
+              <option>Men&rsquo;s study</option>
+              <option>College &amp; career</option>
+            </select>
+          </div>
+          <button class="btn btn-small" type="submit">Send</button>
+        </form>
+      </details>
+    </div>
+  </section>
+
+  <!-- ══════════════ 7 · GIVE — THEME BAND (the expressive moment) ══════════════ -->
+  <section class="give" id="give" aria-labelledby="give-h">
+    <!-- Signature 4 — antigravity drifting light -->
+    <div class="orbs" aria-hidden="true">
+      <span class="orb o1"></span>
+      <span class="orb o2"></span>
+      <span class="orb o3"></span>
+      <span class="orb o4"></span>
+      <span class="orb o5"></span>
+    </div>
+
+    <div class="container give-inner" data-theme>
+      <p class="eyebrow eyebrow-dark">Theme of the year</p>
+
+      <!-- Signature 3 — the theme writes itself on -->
+      <h2 id="give-h" class="theme-script">
+        <span class="script-line l1"><span class="script-text">Generosity</span><span class="nib" aria-hidden="true"></span></span>
+        <span class="script-line l2"><span class="script-text">in action</span><span class="nib" aria-hidden="true"></span></span>
+      </h2>
+
+      <p class="theme-sub">Reflecting Christ&rsquo;s grace through giving.</p>
+      <p class="theme-verse sc">&ldquo;God loveth a cheerful giver&rdquo; · 2 Corinthians 9:7</p>
+
+      <div class="give-actions">
+        <!-- EDIT: point this at the church's giving page —
+             Tithely (tithe.ly), Pushpay, or a Stripe payment link.
+             Do not build custom payment handling. -->
+    
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ 8 · HYMN BOOKS & RESOURCES ══════════════ -->
+  <section class="section" id="resources" aria-labelledby="resources-h">
+    <div class="container" data-reveal data-stagger>
+      <p class="eyebrow">For the congregation</p>
+      <h2 id="resources-h">Hymn books &amp; resources.</h2>
+      <p class="section-sub">Downloads for worship and study. More will be added over time.</p>
+
+      <!--
+        EDIT: point each href at the real PDF (e.g. href="files/hymn-book.pdf")
+        and correct the file sizes. To add a download, copy one whole <li> block.
+      -->
+      <ul class="download-list" data-reveal data-stagger>
+        <li>
+          <a class="row card download" href="#" download>
+            <svg class="dl-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="row-main">
+              <span class="row-title">Hymn book (PDF)</span>
+              <span class="row-meta sc">PDF · 8.2 MB</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="row card download" href="#" download>
+            <svg class="dl-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="row-main">
+              <span class="row-title">This week&rsquo;s bulletin (PDF)</span>
+              <span class="row-meta sc">PDF · 0.4 MB</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="row card download" href="#" download>
+            <svg class="dl-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="row-main">
+              <span class="row-title">Bible study notes (PDF)</span>
+              <span class="row-meta sc">PDF · 1.1 MB</span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Signature 2 — arched hairline divider -->
+  <div class="arch-divider" aria-hidden="true" data-reveal>
+    <svg viewBox="0 0 1000 48" preserveAspectRatio="none" focusable="false">
+      <path pathLength="1" d="M0 44 Q500 6 1000 44"/>
+    </svg>
+  </div>
+
+  <!-- ══════════════ 9 · NEWS & ANNOUNCEMENTS ══════════════ -->
+  <section class="section" id="news" aria-labelledby="news-h">
+    <div class="container" data-reveal data-stagger>
+      <p class="eyebrow">From the office</p>
+      <h2 id="news-h">News &amp; announcements.</h2>
+
+      <!--
+        ═══ ANNOUNCEMENTS COME FROM THE GOOGLE FORM ═══
+        Nobody edits these rows. An admin submits "Announcement" entries on
+        the "SOS Church — site update" Google Form (created once by running
+        admin-form-setup.gs), and the site shows the three newest. The rows
+        below are only a design fallback until CONTENT_SHEET_CSV is set in
+        script.js.
+      -->
+      <ul class="news-list" data-reveal data-stagger>
+        <li class="news-item">
+          <span class="row-meta sc">Jul 1</span>
+          <div>
+            <h3 class="row-title">A word on this year&rsquo;s theme</h3>
+            <p>Why we chose generosity — and what we&rsquo;re praying it looks like in practice.</p>
+          </div>
+        </li>
+        <li class="news-item">
+          <span class="row-meta sc">Jun 24</span>
+          <div>
+            <h3 class="row-title">New midweek study begins</h3>
+            <p>Wednesdays at 7:00 pm we open a new series in the book of Acts.</p>
+          </div>
+        </li>
+      </ul>
+
+      <!--
+        EDIT: newsletter signup. In Mailchimp: Audience → Signup forms →
+        Embedded form. Either paste Mailchimp's form here, or keep this
+        markup and set the action URL to the one in Mailchimp's snippet.
+      -->
+      <form class="news-form" action="https://YOUR-ACCOUNT.usX.list-manage.com/subscribe/post" method="POST">
+        <label class="sc ask-label" for="newsletter">Get announcements by email</label>
+        <div class="ask-controls">
+          <input id="newsletter" name="EMAIL" type="email" required
+                 placeholder="you@example.com" autocomplete="email">
+          <button class="btn btn-small" type="submit">Subscribe</button>
+        </div>
+      </form>
+    </div>
+  </section>
+ 
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="footer" id="contact">
+    <div class="container footer-grid" data-reveal data-stagger>
+      <div class="footer-id">
+        <p class="footer-name">SOS Church of Christ</p>
+        <p class="footer-tag">A cappella worship · a family in Christ</p>
+        <div class="rule rule-dark" aria-hidden="true"></div>
+        <p class="sc footer-times">Sunday 9:00 &amp; 10:30 am</p>
+        <address>
+          <!-- EDIT: real address, email, phone -->
+          <p>Tiyende Pamozi Primary School, SOS, Lusaka</p>
+          <p><a href="mailto:soschurchofchrist@gmail.com">soschurchofchrist@gmail.com</a></p>
+          <p><a href="tel:+260973729904">(260) 973-729904</a></p>
+        </address>
+      </div>
+      <!--
+        The live map — pinned on Tiyende Pamodzi Primary School, Lusaka
+        (from https://maps.app.goo.gl/Fn6psZqAxVAEDvKt7). If the meeting
+        place ever changes, just change the place name inside q=…
+        below (keep the &output=embed on the end), and update the
+        directions link to the new share link.
+      -->
+      <div class="map-block">
+        <iframe class="map"
+                src="https://maps.google.com/maps?q=Tiyende+Pamodzi+Primary+School,+Lusaka&z=16&output=embed"
+                title="Map showing where SOS Church of Christ meets — Tiyende Pamodzi Primary School, SOS, Lusaka"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <a class="sc map-link" href="https://maps.app.goo.gl/Fn6psZqAxVAEDvKt7" rel="noopener">Get directions</a>
+      </div>
+    </div>
+    <div class="container footer-foot" data-reveal>
+      <p>&copy; 2026 SOS Church of Christ · All are welcome.</p>
+      <a class="sc to-top" href="#top">Back to top</a>
+    </div>
+  </footer>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
