@@ -317,6 +317,7 @@ h2 { font-size: clamp(28px, 3.5vw, 32px); line-height: 1.2; margin: 0 0 8px; }
 }
 
 .hero-bg { position: absolute; inset: 0; }
+.hero-bg picture { display: block; width: 100%; height: 100%; }
 .hero-bg img {
   width: 100%; height: 100%;
   object-fit: cover;
@@ -491,6 +492,46 @@ h2.h-split { overflow: hidden; padding-bottom: .1em; }
 .section-dark .roster-note { color: var(--brass-lite); }
 
 /* ── welcome ──────────────────────────────────────────────── */
+
+/* photo panel — the WHOLE congregation photo, full-bleed and never
+   cropped (everyone stays in frame). Photo, scrim and copy are stacked in
+   one grid cell so the section is exactly as tall as whichever is taller —
+   no dead space, no viewport-height guessing. The photo's top and foot are
+   feathered into the dark band by a mask on the image itself, so the fade
+   is the same proportion on a phone and a laptop; its sides run to the
+   screen edge. A soft left scrim keeps the cream copy legible. */
+.section.welcome-photo {             /* .section.x beats the mobile .section padding */
+  position: relative;
+  overflow: hidden;
+  padding: 0;                        /* full-bleed, top and bottom */
+  display: grid;
+}
+.welcome-photo > * { grid-area: 1 / 1; }   /* stack photo · scrim · copy */
+
+.welcome-bg { align-self: start; }          /* photo pinned to the top */
+.welcome-bg picture { display: block; }
+.welcome-bg img {
+  display: block;
+  width: 100%; height: auto;                /* full width, full photo, no crop */
+  -webkit-mask-image:
+    linear-gradient(180deg, transparent 0%, #000 15%, #000 82%, transparent 100%);
+          mask-image:
+    linear-gradient(180deg, transparent 0%, #000 15%, #000 82%, transparent 100%);
+}
+.welcome-scrim {
+  align-self: stretch; z-index: 1;
+  /* soft left vignette for text contrast — edge fades live on the image */
+  background: linear-gradient(90deg,
+    rgba(30,22,17,.74) 0%, rgba(30,22,17,.4) 46%, rgba(30,22,17,0) 80%);
+}
+.welcome-photo .container {
+  z-index: 2; position: relative;
+  align-self: center;
+  padding-top: 72px; padding-bottom: 72px;   /* breathing room over the photo */
+  /* a whisper of shadow so the cream copy stays crisp over bright spots
+     of the photo without having to darken the photo itself */
+  text-shadow: 0 1px 14px rgba(20, 14, 10, .5);
+}
 
 .welcome-copy { margin-top: 8px; max-width: 54ch; }
 .welcome-copy p { margin: 0 0 16px; }
@@ -840,6 +881,28 @@ input::placeholder { color: var(--muted); opacity: .8; }
   .give { padding: 96px 0; }
   .join-form { grid-template-columns: 1fr; align-items: stretch; }
   .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* ── portrait screens: the WHOLE congregation photo, uncropped ──
+   A wide group photo can't fill a tall screen without cutting
+   people out of it. So on phones held upright the hero reflows:
+   the full photo sits just below the nav at its natural shape,
+   its top and foot melting into the dark band (never a hard
+   frame), and the headline block follows underneath. */
+@media (orientation: portrait) {
+  /* natural height — no leftover blank band before the next section */
+  .hero { display: block; min-height: 0; }
+  .hero-bg {
+    position: relative; inset: auto;
+    margin-top: 76px;             /* clears the fixed nav */
+  }
+  .hero-bg img { height: auto; }  /* natural aspect — nobody cropped out */
+  .hero-scrim {
+    background:
+      linear-gradient(180deg, var(--band) 0%, rgba(30,22,17,0) 16%,
+                      rgba(30,22,17,0) 74%, var(--band) 100%);
+  }
+  .hero-content { padding-top: 8px; padding-bottom: 72px; }
 }
 
 @media (max-width: 720px) {

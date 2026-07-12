@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SOS Church of Christ — A cappella worship · all are welcome</title>
-  <meta name="description" content="SOS Church of Christ — a cappella worship, plain preaching from Scripture, a family in Christ. Sundays 9:00 & 10:30 am, Wednesdays 7:00 pm. Come as you are.">
+  <meta name="description" content="SOS Church of Christ — a cappella worship, plain preaching from Scripture, a family in Christ. Sundays: Bible study 9:00–10:00 am, worship 10:00 am–12:00 pm. Come as you are.">
   <!-- matches the dark photo hero so the mobile browser chrome blends in -->
   <meta name="theme-color" content="#1E1611">
 
   <!-- Favicon: a small brass chapel arch, inline so there is nothing extra to host -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F7F4ED'/%3E%3Cpath d='M9 26 V14 Q9 6 16 6 Q23 6 23 14 V26' fill='none' stroke='%23B0894F' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml         cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccZ                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc aWC,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F7F4ED'/%3E%3Cpath d='M9 26 V14 Q9 6 16 6 Q23 6 23 14 V26' fill='none' stroke='%23B0894F' stroke-width='2'/%3E%3C/svg%3E">
 
   <!--
     FONTS — PROTOTYPING ONLY.
@@ -90,13 +90,22 @@
        behind the transparent nav. Warm ink gradients (never flat black)
        darken the top so the nav reads, and the bottom-left where the
        content sits — the image dissolves, it is never "framed".
-       REPLACE images/congregation.jpg with a newer group photo any time;
-       a wide, landscape shot (people mid-frame, sky above) works best. -->
+       On landscape screens the photo fills the viewport (cover). On
+       portrait phones it reflows instead: the WHOLE photo shows,
+       uncropped, below the nav — nobody in the congregation is cut
+       off — and its foot dissolves into the dark band where the
+       headline takes over (see the portrait media query in the CSS).
+       sun-mobile.jpg is the same full frame at phone size.
+       To swap in a newer photo, replace both files in images/. -->
   <section class="hero" aria-label="Welcome">
     <div class="hero-bg">
-      <img src="images/congregation.jpg"
-           alt="The SOS Church of Christ family — men, women and children gathered together outside after Sunday worship"
-           width="1080" height="584" fetchpriority="high" decoding="async">
+      <picture>
+        <!-- portrait screens get the same full frame, phone-sized -->
+        <source media="(orientation: portrait)" srcset="images/sun-mobile.jpg" width="1200" height="376">
+        <img src="images/sun.jpg"
+             alt="The SOS Church of Christ family — men, women and children gathered together outside in the sun after Sunday worship"
+             width="1920" height="602" fetchpriority="high" decoding="async">
+      </picture>
       <div class="hero-scrim" aria-hidden="true"></div>
     </div>
 
@@ -107,9 +116,9 @@
         <p class="tagline hero-d">A cappella worship · a family in Christ · all are welcome</p>
       </div>
       <p class="hero-times sc hero-e">
-        <span>Sun 9:00 &amp; 10:30</span>
+        <span>Sun · Bible study 9:00&ndash;10:00</span>
         <span class="sep" aria-hidden="true"></span>
-        <span>Wed 7:00 pm</span>
+        <span>Worship 10:00&ndash;12:00</span>
       </p>
       <div class="hero-actions hero-f">
         <a class="btn" href="#visit">Plan your visit</a>
@@ -208,10 +217,22 @@
   </section>
 
   <!-- ══════════════ 3 · WELCOME / WHAT TO EXPECT ══════════════
-       (The welcome-class photo that used to back this section was
-       removed; the photo file is still in images/welcome-class.jpg
-       if it's ever wanted again.) -->
-  <section class="section band-alt" id="visit" aria-labelledby="visit-h">
+       Backed by the WHOLE indoors photo — never cropped, so every face
+       stays in frame. The photo's four edges are feathered into the dark
+       band by a soft mask (see .welcome-bg img in the CSS), so it melts
+       into the page with no hard frame; the fade lives on the image, so
+       it looks the same on phone and laptop. Cream text sits over a
+       gentle left scrim, inside the continuous dark passage. -->
+  <section class="section section-dark welcome-photo" id="visit" aria-labelledby="visit-h">
+    <div class="welcome-bg" aria-hidden="true">
+      <picture>
+        <!-- lighter file for phones; both are cover-cropped as a backdrop -->
+        <source media="(max-width: 640px)" srcset="images/indoors-mobile.jpg" width="1200" height="560">
+        <img src="images/indoors.jpg" alt="" width="1920" height="897" loading="lazy" decoding="async">
+      </picture>
+    </div>
+    <div class="welcome-scrim" aria-hidden="true"></div>
+
     <div class="container welcome" data-reveal data-stagger>
       <p class="eyebrow">First time?</p>
       <h2 id="visit-h">Welcome, friend.</h2>
@@ -223,9 +244,9 @@
           and share the Gospel.
         </p>
         <p class="welcome-times sc">
-          <span>Sun 9:00 &amp; 10:30</span>
+          <span>Sun · Bible study 9:00&ndash;10:00</span>
           <span class="sep" aria-hidden="true"></span>
-          <span>Wed 7:00 pm</span>
+          <span>Worship 10:00&ndash;12:00</span>
         </p>
       </div>
     </div>
@@ -512,8 +533,8 @@
         <li class="news-item">
           <span class="row-meta sc">Jun 24</span>
           <div>
-            <h3 class="row-title">New midweek study begins</h3>
-            <p>Wednesdays at 7:00 pm we open a new series in the book of Acts.</p>
+            <h3 class="row-title">New Bible study series begins</h3>
+            <p>Sunday mornings at 9:00 we open a new series in the book of Acts.</p>
           </div>
         </li>
       </ul>
@@ -541,7 +562,7 @@
         <p class="footer-name">SOS Church of Christ</p>
         <p class="footer-tag">A cappella worship · a family in Christ</p>
         <div class="rule rule-dark" aria-hidden="true"></div>
-        <p class="sc footer-times">Sunday 9:00 &amp; 10:30 am</p>
+        <p class="sc footer-times">Sundays · Bible study 9:00&ndash;10:00 am · Worship 10:00 am&ndash;12:00 pm</p>
         <address>
           <!-- EDIT: real address, email, phone -->
           <p>Tiyende Pamozi Primary School, SOS, Lusaka</p>
