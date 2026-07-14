@@ -483,9 +483,8 @@ h2.h-split { overflow: hidden; padding-bottom: .1em; }
 .roster tbody tr + tr { border-top: 1px solid var(--line); }
 .roster tbody th { color: var(--muted); font-weight: 500; white-space: nowrap; }
 .roster td { font-size: 15px; }
-/* a quiet warm tint on the nearest Sunday */
-.roster th:nth-child(2), .roster td:nth-child(2) { background: rgba(199, 154, 84, .08); }
-.roster thead th:nth-child(2) { border-radius: 0; }
+/* the nearest Sunday is marked by its cream header (.today) alone —
+   no column tint; a background band read as a glitch on the dark card */
 /* cells with no name yet — a soft "to be announced" dash */
 .roster td.tba { color: var(--muted); opacity: .55; }
 .roster-note { color: var(--brass-ink); margin: 16px 0 0; }
@@ -556,11 +555,13 @@ h2.h-split { overflow: hidden; padding-bottom: .1em; }
   .welcome-photo .welcome-scrim { display: none; }
   .welcome-photo .container {
     width: auto;
-    padding: 36px 0 56px;   /* replace the heavy 72px overlay padding */
-    text-shadow: none;      /* copy now sits on the band, not the photo */
+    padding: 36px 24px 56px;  /* lighter than the overlay's 72px; keep the 24px sides */
+    text-shadow: none;        /* copy now sits on the band, not the photo */
   }
   .welcome-copy { max-width: none; }
+  /* when the times wrap, the brass pipe dangles mid-line — drop it */
   .welcome-times { flex-wrap: wrap; gap: 8px 16px; }
+  .welcome-times .sep { display: none; }
 }
 
 /* ── sermons ──────────────────────────────────────────────── */
@@ -938,7 +939,10 @@ input::placeholder { color: var(--muted); opacity: .8; }
 @media (max-width: 480px) {
   .roster th, .roster td { padding: 12px 16px; }
   .news-item { grid-template-columns: 1fr; }
-  .hero-times { flex-wrap: wrap; }
+  /* the times wrap to two lines here — without the pipe, which
+     would dangle at the end of the first line */
+  .hero-times { flex-wrap: wrap; gap: 8px 16px; }
+  .hero-times .sep { display: none; }
   .theme-script { font-size: clamp(48px, 15vw, 64px); }
 }
 
