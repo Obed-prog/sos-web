@@ -548,6 +548,21 @@ h2.h-split { overflow: hidden; padding-bottom: .1em; }
   color: var(--brass-lite); margin: 24px 0 0;
 }
 
+/* On phones the photo is a short band, so overlaying the copy on it reads
+   cramped and doesn't scale. Stack instead: the faded photo on top, the
+   message below on the dark band — clean at any phone width. */
+@media (max-width: 640px) {
+  .section.welcome-photo { display: block; }
+  .welcome-photo .welcome-scrim { display: none; }
+  .welcome-photo .container {
+    width: auto;
+    padding: 36px 0 56px;   /* replace the heavy 72px overlay padding */
+    text-shadow: none;      /* copy now sits on the band, not the photo */
+  }
+  .welcome-copy { max-width: none; }
+  .welcome-times { flex-wrap: wrap; gap: 8px 16px; }
+}
+
 /* ── sermons ──────────────────────────────────────────────── */
 
 .sermons-grid {
