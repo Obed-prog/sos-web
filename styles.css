@@ -520,23 +520,31 @@ h2.h-split { overflow: hidden; padding-bottom: .1em; }
 }
 .welcome-scrim {
   align-self: stretch; z-index: 1;
-  /* soft left vignette for text contrast — edge fades live on the image */
-  background: linear-gradient(90deg,
-    rgba(30,22,17,.74) 0%, rgba(30,22,17,.4) 46%, rgba(30,22,17,0) 80%);
+  /* the copy sits bottom-left, so darken the bottom and the left edge —
+     deepest in the corner the text lives in */
+  background:
+    linear-gradient(to left, rgba(30,22,17,0) 34%, rgba(30,22,17,.52) 100%),
+    linear-gradient(to top,  rgba(30,22,17,.56) 0%, rgba(30,22,17,0) 52%);
 }
 .welcome-photo .container {
   z-index: 2; position: relative;
-  align-self: center;
+  width: 100%;                               /* fill the column (grid items shrink-wrap otherwise) */
+  align-self: end;                           /* sit at the foot of the photo */
   padding-top: 72px; padding-bottom: 72px;   /* breathing room over the photo */
   /* a whisper of shadow so the cream copy stays crisp over bright spots
      of the photo without having to darken the photo itself */
   text-shadow: 0 1px 14px rgba(20, 14, 10, .5);
 }
+/* left-align the whole block so it anchors to the bottom-left corner */
+.welcome-photo .welcome { text-align: left; }
 
-.welcome-copy { margin-top: 8px; max-width: 54ch; }
+.welcome-copy {
+  margin-top: 8px;
+  max-width: 42ch;        /* narrow column → the paragraph wraps to 3–4 lines */
+}
 .welcome-copy p { margin: 0 0 16px; }
 .welcome-times {
-  display: flex; align-items: center; gap: 16px;
+  display: flex; align-items: center; justify-content: flex-start; gap: 16px;
   color: var(--brass-lite); margin: 24px 0 0;
 }
 
@@ -653,8 +661,9 @@ input::placeholder { color: var(--muted); opacity: .8; }
 }
 .event-card h3 { font-size: 22px; margin: 16px 0 8px; }
 .event-card p { color: var(--muted); font-size: 15px; margin: 0; }
-/* shown when the form sheet is connected but holds no upcoming events */
-.events-empty { color: var(--muted); font-style: italic; font-family: var(--serif); }
+/* shown before/until a sheet is connected, or when it holds nothing yet */
+.events-empty, .news-empty, .sermon-empty { color: var(--muted); font-style: italic; font-family: var(--serif); }
+.sermon-empty { padding: 16px 0; }
 
 /* ── small groups ─────────────────────────────────────────── */
 
@@ -675,11 +684,12 @@ input::placeholder { color: var(--muted); opacity: .8; }
   border: 1px solid var(--line);
   border-radius: 12px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr auto;
+  grid-template-columns: 1fr 1fr;   /* two fields per row: Name/Phone · Email/Group */
   gap: 16px; align-items: end;
-  max-width: 800px;
+  max-width: 560px;
 }
-.field { display: flex; flex-direction: column; gap: 8px; }
+.join-form button { grid-column: 1 / -1; justify-self: start; }
+.field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .field label { color: var(--brass-ink); }
 
 /* ── give — the theme band (the one expressive moment) ────── */

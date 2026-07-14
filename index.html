@@ -221,8 +221,9 @@
        stays in frame. The photo's four edges are feathered into the dark
        band by a soft mask (see .welcome-bg img in the CSS), so it melts
        into the page with no hard frame; the fade lives on the image, so
-       it looks the same on phone and laptop. Cream text sits over a
-       gentle left scrim, inside the continuous dark passage. -->
+       it looks the same on phone and laptop. The cream copy is anchored
+       to the bottom-right over a scrim that deepens toward that corner,
+       inside the continuous dark passage. -->
   <section class="section section-dark welcome-photo" id="visit" aria-labelledby="visit-h">
     <div class="welcome-bg" aria-hidden="true">
       <picture>
@@ -257,7 +258,7 @@
     <div class="container" data-reveal data-stagger>
       <p class="eyebrow">Preaching</p>
       <h2 id="sermons-h">Sermons.</h2>
-      <p class="section-sub">Plain preaching from Scripture, recorded each week.</p>
+      <p class="section-sub">Weekly preaching.</p>
 
       <div class="sermons-grid">
         <!--
@@ -283,35 +284,18 @@
         </figure>
 
         <div class="sermon-side">
-          <h3 class="list-heading sc"></h3>
-          <ul class="sermon-list" data-reveal data-stagger><!-- EDIT: recent sermons -->
-            <li>
-              <a class="row" href="#sermons">
-                <span class="row-main">
-                  <span class="row-title"></span>
-                  <span class="row-meta sc">6</span>
-                </span>
-                <svg class="chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-            </li>
-            <li>
-              <a class="row" href="#sermons">
-                <span class="row-main">
-                  <span class="row-title"></span>
-                  <span class="row-meta sc"></span>
-                </span>
-                <svg class="chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-            </li>
-            <li>
-              <a class="row" href="#sermons">
-                <span class="row-main">
-                  <span class="row-title"></span>
-                  <span class="row-meta sc"></span>
-                </span>
-                <svg class="chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-            </li>
+          <h3 class="list-heading sc">Recent sermons</h3>
+          <!--
+            The three most recent sermons come from a "Sermons" Google Sheet
+            (columns: Date · Title · PDF link). The site lists the newest
+            three and each row downloads that week's PDF (a Google Drive
+            share link is turned into a direct download automatically).
+            Connect it by pasting the sheet's published-CSV link into
+            SERMONS_SHEET_CSV in script.js. The line below is the fallback
+            shown until it's connected.
+          -->
+          <ul class="sermon-list" data-reveal data-stagger>
+            <li class="sermon-empty">Sermon downloads will appear here each week.</li>
           </ul>
 
           <!--
@@ -359,21 +343,9 @@
         only a design fallback until CONTENT_SHEET_CSV is set in script.js.
       -->
       <ul class="event-grid" data-reveal data-stagger>
-        <li class="card event-card">
-          <span class="date-chip sc">Jul 12</span>
-          <h3></h3>
-          <p></p>
-        </li>
-        <li class="card event-card">
-          <span class="date-chip sc">Jul 19</span>
-          <h3></h3>
-          <p></p>
-        </li>
-        <li class="card event-card">
-          <span class="date-chip sc">Aug 2</span>
-          <h3></h3>
-          <p></p>
-        </li>
+        <!-- graceful fallback before the form sheet is connected (or if it
+             can't be reached); real event cards replace this — see script.js -->
+        <li class="events-empty">Nothing on the calendar just now — check back after Sunday.</li>
       </ul>
     </div>
   </section>
@@ -387,37 +359,42 @@
 
       <ul class="group-list" data-reveal data-stagger><!-- EDIT: groups, days, places -->
         <li>
-          <span class="group-name">youths</span>
-          <span class="group-meta sc">Sundays · homes</span>
+          <span class="group-name">Men</span>
+          <span class="group-meta sc">Day · place</span>
         </li>
         <li>
-          <span class="group-name">Men&rsquo;s study</span>
-          <span class="group-meta sc">Tuesdays · 6:30 am</span>
+          <span class="group-name">Women</span>
+          <span class="group-meta sc">Day · place</span>
         </li>
         <li>
-          <span class="group-name">College &amp; career</span>
-          <span class="group-meta sc">Thursdays · campus</span>
+          <span class="group-name">Youths</span>
+          <span class="group-meta sc">Day · place</span>
         </li>
       </ul>
 
       <details class="join-details">
         <summary class="btn btn-outline">Join a group</summary>
-        <!-- EDIT: same Formspree endpoint idea as the sermon form -->
-        <form class="join-form" action="https://formspree.io/f/YOUR-FORM-ID" method="POST">
+        <!-- group signups post to Formspree → church email + dashboard -->
+        <form class="join-form" action="https://formspree.io/f/mnjenavj" method="POST">
           <div class="field">
             <label class="sc" for="join-name">Name</label>
             <input id="join-name" name="name" type="text" required autocomplete="name">
           </div>
           <div class="field">
-            <label class="sc" for="join-email">Email</label>
-            <input id="join-email" name="email" type="email" required autocomplete="email">
+            <label class="sc" for="join-phone">Phone</label>
+            <input id="join-phone" name="phone" type="tel" required autocomplete="tel"
+                   inputmode="tel" placeholder="e.g. 097 000 0000">
+          </div>
+          <div class="field">
+            <label class="sc" for="join-email">Email (optional)</label>
+            <input id="join-email" name="email" type="email" autocomplete="email">
           </div>
           <div class="field">
             <label class="sc" for="join-group">Group</label>
             <select id="join-group" name="group">
-              <option>youths</option>
-              <option>Men&rsquo;s study</option>
-              <option>College &amp; career</option>
+              <option>Men</option>
+              <option>Women</option>
+              <option>Youths</option>
             </select>
           </div>
           <button class="btn btn-small" type="submit">Send</button>
@@ -466,34 +443,26 @@
       <p class="section-sub">Downloads for worship and study. More will be added over time.</p>
 
       <!--
-        EDIT: point each href at the real PDF (e.g. href="files/hymn-book.pdf")
-        and correct the file sizes. To add a download, copy one whole <li> block.
+        Hymn books live in the books/ folder and are linked below. To add a
+        download, copy one whole <li> block, point href at the new file
+        (URL-encode spaces as %20), and set its size in the meta line.
       -->
       <ul class="download-list" data-reveal data-stagger>
         <li>
-          <a class="row card download" href="#" download>
+          <a class="row card download" href="books/Lozi%20Hymn%20(Church%20of%20Christ).pdf" download>
             <svg class="dl-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span class="row-main">
-              <span class="row-title">Hymn book (PDF)</span>
-              <span class="row-meta sc">PDF · 8.2 MB</span>
+              <span class="row-title">Lozi hymn book (PDF)</span>
+              <span class="row-meta sc">PDF · 14.4 MB</span>
             </span>
           </a>
         </li>
         <li>
-          <a class="row card download" href="#" download>
+          <a class="row card download" href="books/TONGA%20HYMN%20BOOK.pdf" download>
             <svg class="dl-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span class="row-main">
-              <span class="row-title">This week&rsquo;s bulletin (PDF)</span>
-              <span class="row-meta sc">PDF · 0.4 MB</span>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a class="row card download" href="#" download>
-            <svg class="dl-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="row-main">
-              <span class="row-title">Bible study notes (PDF)</span>
-              <span class="row-meta sc">PDF · 1.1 MB</span>
+              <span class="row-title">Tonga hymn book (PDF)</span>
+              <span class="row-meta sc">PDF · 2.6 MB</span>
             </span>
           </a>
         </li>
@@ -523,20 +492,9 @@
         script.js.
       -->
       <ul class="news-list" data-reveal data-stagger>
-        <li class="news-item">
-          <span class="row-meta sc">Jul 1</span>
-          <div>
-            <h3 class="row-title">A word on this year&rsquo;s theme</h3>
-            <p>Why we chose generosity — and what we&rsquo;re praying it looks like in practice.</p>
-          </div>
-        </li>
-        <li class="news-item">
-          <span class="row-meta sc">Jun 24</span>
-          <div>
-            <h3 class="row-title">New Bible study series begins</h3>
-            <p>Sunday mornings at 9:00 we open a new series in the book of Acts.</p>
-          </div>
-        </li>
+        <!-- graceful fallback before the form sheet is connected (or if it
+             can't be reached); real announcements replace this — see script.js -->
+        <li class="news-empty">No announcements just now — check back soon.</li>
       </ul>
 
       <!--

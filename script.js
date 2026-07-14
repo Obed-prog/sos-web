@@ -151,8 +151,9 @@ if (reducedMotion || !('IntersectionObserver' in window)) {
    Each needs its published-CSV link pasted below, one time.
    ════════════════════════════════════════════════════════════ */
 
-var ROSTER_SHEET_CSV  = '';  /* ← roster sheet published-CSV link */
-var CONTENT_SHEET_CSV = '';  /* ← form-responses sheet published-CSV link */
+var ROSTER_SHEET_CSV  = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT5Mg83QVMQcVQ1e1bYo4hj7IAuFoHfrlLaVzcQv6y05id3pu4aGp4wFxHGZcea6iUsryhMLfuh0AV_/pub?gid=0&single=true&output=csv';  /* ← roster sheet published-CSV link */
+var CONTENT_SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQSdOoelJk-05gEe318mdxysgskAhb4d93yKi4NlGvn0Ta_2WxDQcuk2Lm5HpnmXtvTKdmM8oguIaPU/pub?gid=892618587&single=true&output=csv';  /* ← form-responses sheet published-CSV link */
+var SERMONS_SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT5Mg83QVMQcVQ1e1bYo4hj7IAuFoHfrlLaVzcQv6y05id3pu4aGp4wFxHGZcea6iUsryhMLfuh0AV_/pub?gid=817490659&single=true&output=csv';  /* ← sermons sheet published-CSV link (Date · Title · PDF link) */
 
 /* ── shared helpers ─────────────────────────────────────────── */
 
@@ -187,6 +188,18 @@ function fetchCSV(url) {
   }).then(parseCSV);
 }
 
+/* find a column index by header name (case-insensitive substring),
+   so sheets can order their columns freely */
+function findCol(headers, words) {
+  for (var i = 0; i < headers.length; i++) {
+    var h = headers[i].toLowerCase();
+    for (var w = 0; w < words.length; w++) {
+      if (h.indexOf(words[w]) !== -1) return i;
+    }
+  }
+  return -1;
+}
+
 /* dates arrive from Google Sheets as day/month/year (the setup
    script pins the sheet to the en_GB locale); ISO dates and
    unambiguous forms are handled too */
@@ -216,9 +229,13 @@ function shortDate(d) { return MONTHS[d.getMonth()] + ' ' + d.getDate(); }
   var status = document.querySelector('[data-roster-status]');
 
   function render(rows) {
-    if (rows.length < 2 || rows[0].length < 2) throw new Error('unexpected roster shape');
+    if (rows.length < 2) throw new Error('unexpected roster shape');
 
-    var dates = rows[0];               /* [blank, date1, date2, …] */
+    var dates = rows[0].slice();       /* [blank, date1, date2, …] */
+    /* drop stray empty trailing columns a published sheet can carry, so
+       they don't render as blank date columns */
+    while (dates.length > 1 && !(dates[dates.length - 1] || '').trim()) dates.pop();
+    if (dates.length < 2) throw new Error('unexpected roster shape');
     var thead = '<tr><th scope="col"><span class="visually-hidden">Role</span></th>';
     for (var c = 1; c < dates.length; c++) {
       var isFirst = c === 1;
@@ -269,16 +286,6 @@ function shortDate(d) { return MONTHS[d.getMonth()] + ' ' + d.getDate(); }
   var eventGrid = document.querySelector('.event-grid');
   if (!newsList && !eventGrid) return;
 
-  function findCol(headers, words) {
-    for (var i = 0; i < headers.length; i++) {
-      var h = headers[i].toLowerCase();
-      for (var w = 0; w < words.length; w++) {
-        if (h.indexOf(words[w]) !== -1) return i;
-      }
-    }
-    return -1;
-  }
-
   fetchCSV(CONTENT_SHEET_CSV).then(function (rows) {
     if (rows.length < 2) return;   /* no submissions yet → keep fallbacks */
 
@@ -328,21 +335,74 @@ function shortDate(d) { return MONTHS[d.getMonth()] + ' ' + d.getDate(); }
         return it.type.indexOf('announce') === 0;
       }).sort(function (a, b) { return (b.date - a.date) || (b.order - a.order); }).slice(0, 3);
 
-      if (news.length) {
-        newsList.innerHTML = news.map(function (it) {
-          return '<li class="news-item">' +
-                   '<span class="row-meta sc">' + esc(shortDate(it.date)) + '</span>' +
-                   '<div>' +
-                     '<h3 class="row-title">' + esc(it.title) + '</h3>' +
-                     '<p>' + esc(it.body) + '</p>' +
-                   '</div>' +
-                 '</li>';
-        }).join('');
-      }
+      newsList.innerHTML = news.length
+        ? news.map(function (it) {
+            return '<li class="news-item">' +
+                     '<span class="row-meta sc">' + esc(shortDate(it.date)) + '</span>' +
+                     '<div>' +
+                       '<h3 class="row-title">' + esc(it.title) + '</h3>' +
+                       '<p>' + esc(it.body) + '</p>' +
+                     '</div>' +
+                   '</li>';
+          }).join('')
+        : '<li class="news-empty">No announcements just now — check back soon.</li>';
     }
   }).catch(function (err) {
     /* fallbacks stay in place, quietly */
     if (window.console) console.warn('Content sheet not loaded:', err.message);
+  });
+})();
+
+/* ── sermons: three most recent, each downloading its PDF ─────
+   Filled from a "Sermons" Google Sheet — columns (any order,
+   matched by header name): Date · Title · PDF link. A Google
+   Drive share link is fine; it's rewritten to a direct download. */
+
+(function () {
+  var list = document.querySelector('.sermon-list');
+  if (!list || !SERMONS_SHEET_CSV) return;   /* not connected yet → keep the fallback */
+
+  /* a Drive "share" link opens a preview; rewrite it so the file
+     downloads directly. Any other link is used exactly as given. */
+  function toDownload(url) {
+    var m = url.match(/\/file\/d\/([^/]+)/) || url.match(/[?&]id=([^&]+)/);
+    return m ? 'https://drive.google.com/uc?export=download&id=' + m[1] : url;
+  }
+
+  fetchCSV(SERMONS_SHEET_CSV).then(function (rows) {
+    if (rows.length < 2) return;   /* no sermons posted yet → keep the fallback */
+
+    var head   = rows[0];
+    var iDate  = findCol(head, ['date']);
+    var iTitle = findCol(head, ['title', 'sermon']);
+    var iLink  = findCol(head, ['link', 'pdf', 'url', 'file']);
+    if (iDate < 0 || iTitle < 0 || iLink < 0) throw new Error('unexpected sermons columns');
+
+    var items = rows.slice(1).map(function (r, n) {
+      return {
+        date:  parseSheetDate(r[iDate] || ''),
+        title: (r[iTitle] || '').trim(),
+        link:  (r[iLink]  || '').trim(),
+        order: n
+      };
+    }).filter(function (it) { return it.title && it.link; })
+      .sort(function (a, b) { return (b.date - a.date) || (b.order - a.order); })
+      .slice(0, 3);
+
+    if (!items.length) return;
+
+    list.innerHTML = items.map(function (s) {
+      var meta = s.date ? esc(shortDate(s.date)) + ' · PDF' : 'PDF';
+      return '<li><a class="row" href="' + esc(toDownload(s.link)) + '" download>' +
+               '<span class="row-main">' +
+                 '<span class="row-title">' + esc(s.title) + '</span>' +
+                 '<span class="row-meta sc">' + meta + '</span>' +
+               '</span>' +
+               '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+             '</a></li>';
+    }).join('');
+  }).catch(function (err) {
+    if (window.console) console.warn('Sermons sheet not loaded:', err.message);
   });
 })();
 
